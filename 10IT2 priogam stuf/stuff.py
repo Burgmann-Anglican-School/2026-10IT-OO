@@ -13,10 +13,9 @@ class Dog:
     #this is the dunder init, iot initialises the class
     #the first argument will always be self,  this lets the class
     # refer to itself
-    def __init__(self, name, age, breed):
+    def __init__(self, name, age):
         self.name = name
         self.age = age
-        self.breed = breed
 
     #This is a new method that lets the dog say something
     def speak(self, words):
@@ -28,14 +27,43 @@ class Dog:
 
     #This is the dunder str, it overrides the print function
     def __str__(self):
-        return f"{self.name} is a {self.age} year old {self.breed}"
+        return f"{self.name} is a {self.age} year old"
 
-my_dog = Dog('Markus', 20, 'labradoodle')
-dog2 = Dog('Markuce', 47, 'pug')
+class Labradoodle(Dog):
+    def speak(self):
+        return 'hello'
 
-print(my_dog.name)
-print(my_dog.age)
-print(my_dog.breed)
-print(my_dog)
-print(my_dog.speak('Hello'))
+class Pug(Dog):
+    def converse(self, other, words='stuff'):
+        return f'{self.name} says {words} to {other.name}'
+
+my_dog = Labradoodle('Markus', 20)
+dog2 = Pug('Markuce', 47)
+
+print(my_dog.speak())
+print(dog2.speak('Hello'))
 print(my_dog.converse(dog2))
+print(dog2.converse(my_dog))
+
+
+
+class Car:
+
+    def __init__(self, colour, kilometerage):
+        self.colour = colour
+        self.kilometerage = kilometerage
+
+    def __str__(self):
+        return f'The {self.colour} car has {self.kilometerage} kilometres.'
+    
+    def difference(self, other_car):
+        return abs(self.kilometerage - other_car.kilometerage)
+
+
+blue_car = Car('blue', 20000)
+red_car = Car('red', 30000)
+
+print(blue_car)
+print(red_car)
+print(blue_car.difference(red_car))
+
